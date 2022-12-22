@@ -29,12 +29,14 @@ Route::get('/', function () {
 Route::get('/properties/', [PropertyController::class, 'index'])->name('properties.index');
 Route::get('/properties/create', [PropertyController::class, 'create'])->name('properties.create');
 Route::get('/properties/{property}/edit', [PropertyController::class, 'edit'])->name('properties.edit');
+Route::put('/properties/{property}', [PropertyController::class, 'update'])->name('properties.update');
 Route::post('/properties/', [PropertyController::class, 'store'])->name('properties.store');
 
 
 Route::get('/locations/', [LocationController::class, 'index'])->name('locations.index');
 Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');
 Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->name('locations.edit');
+Route::put('/locations/{location}', [LocationController::class, 'update'])->name('locations.update');
 Route::post('/locations/', [LocationController::class, 'store'])->name('locations.store');
 
 

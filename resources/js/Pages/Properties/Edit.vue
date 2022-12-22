@@ -103,6 +103,14 @@
                     </div>
 
                     <div>
+              <label class="block text-sm font-medium text-gray-700">Photo</label>
+              <div class="mt-1 flex items-center">
+                <img src="image" class="w-32 h-32" alt="">
+              </div>
+            </div>
+
+
+                    <div>
                       <label class="block text-sm font-medium text-gray-700"
                         >Cover photo</label
                       >
@@ -190,7 +198,7 @@
                         focus:ring-offset-2
                       "
                     >
-                      Save
+                      Update
                     </button>
                   </div>
                 </div>
@@ -207,9 +215,11 @@
   <script setup>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+import { Inertia} from "@inertiajs/inertia";
 
 const props =  defineProps({
     property: Object,
+    image: String
 })
 
 const form = useForm({
@@ -219,7 +229,12 @@ const form = useForm({
 });
 
 const updateProperty = () => {
-  form.post("/properties");
+    Inertia.post(`/properties/${props.property.id}`, {
+  _method: 'put',
+  name: form.name,
+  location: form.location,
+  image: form.image,
+})
 };
 </script>
   

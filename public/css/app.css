@@ -784,6 +784,9 @@ select {
 .mb-5 {
   margin-bottom: 1.25rem;
 }
+.ml-5 {
+  margin-left: 1.25rem;
+}
 .block {
   display: block;
 }
@@ -832,6 +835,12 @@ select {
 .h-10 {
   height: 2.5rem;
 }
+.h-full {
+  height: 100%;
+}
+.h-32 {
+  height: 8rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -864,6 +873,9 @@ select {
 }
 .w-10 {
   width: 2.5rem;
+}
+.w-32 {
+  width: 8rem;
 }
 .min-w-full {
   min-width: 100%;

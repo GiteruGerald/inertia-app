@@ -6,6 +6,7 @@ use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class PropertyController extends Controller
@@ -17,7 +18,7 @@ class PropertyController extends Controller
                 return [
                     'id' => $property->id,
                     'name' => $property->name,
-                    'image' => asset('storage/'. $property->image)
+                    'image' => asset('/storage/'. $property->image)
                 ];
             })
         ]);
@@ -50,8 +51,29 @@ class PropertyController extends Controller
         return Inertia::render(
             'Properties/Edit',
             [
-                'property' => $property
+                'property' => $property,
+                'image' => asset('/storage/'. $property->image)
             ]
         );
+    }
+
+
+    public function update(Property $property)
+    {
+        $image = $property->image;
+
+        if(FacadesRequest::file('image')){
+            Storage::delete('public/'. $property->image);
+            $image = FacadesRequest::file('image')->store('properties', 'public');
+        }
+
+        $property->update([
+            'name'=> FacadesRequest::input('name'),
+            'location'=> FacadesRequest::input('location'),
+            'image'=> $image
+        ]);
+        
+        return Redirect::route('properties.index'); 
+
     }
 }
