@@ -4,7 +4,7 @@
   <BreezeAuthenticatedLayout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Properties Create
+        Properties Edit
       </h2>
     </template>
 
@@ -41,7 +41,13 @@
                 shadow-md
               "
             >
-              <form @submit.prevent="storeProperty">
+            <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">
+                  Edit Property
+                </h2>
+                <p class="leading-relaxed mb-5 text-gray-600">
+                  Post-ironic portland shabby chic echo park, banjo fashion axe
+                </p>
+              <form @submit.prevent="updateProperty">
                 <div class="shadow sm:overflow-hidden sm:rounded-md">
                   <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
                     <div>
@@ -52,7 +58,7 @@
                       >
                       <div class="mt-1 flex rounded-md shadow-sm">
                         <input
-                        v-model="form.name"
+                          v-model="form.name"
                           type="text"
                           name="name"
                           id="name"
@@ -78,7 +84,7 @@
                       >
                       <div class="mt-1 flex rounded-md shadow-sm">
                         <input
-                        v-model="form.location"
+                          v-model="form.location"
                           type="text"
                           name="location"
                           id="location"
@@ -95,34 +101,6 @@
                         />
                       </div>
                     </div>
-<!-- 
-                    <div>
-                      <label
-                        for="image"
-                        class="block text-sm font-medium text-gray-700"
-                        >Image</label
-                      >
-                      <div class="mt-1 flex rounded-md shadow-sm">
-                        <input
-                        @input="form.image = $event.target.files[0]"
-                          type="file"
-                          name="image"
-                          id="image"
-                          class="
-                            block
-                            w-full
-                            flex-1
-                            rounded-none rounded-r-md
-                            border-gray-300
-                            focus:border-indigo-500 focus:ring-indigo-500
-                            sm:text-sm
-                          "
-                          placeholder="Name of Image"
-                        />
-                      </div>
-                    </div> -->
-
-                   
 
                     <div>
                       <label class="block text-sm font-medium text-gray-700"
@@ -226,18 +204,22 @@
     </div>
   </BreezeAuthenticatedLayout>
 </template>
-<script setup>
+  <script setup>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
-const form = useForm({
-      name: null,
-      location:null,
-      image: null,
-    })
-    
-   const storeProperty = ()=> {
-      form.post('/properties')
-    }
+const props =  defineProps({
+    property: Object,
+})
 
+const form = useForm({
+  name: props.property.name,
+  location: props.property.location,
+  image: null,
+});
+
+const updateProperty = () => {
+  form.post("/properties");
+};
 </script>
+  

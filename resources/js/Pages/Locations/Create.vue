@@ -6,7 +6,7 @@
   <BreezeAuthenticatedLayout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Loations Index
+        Loations Create
       </h2>
     </template>
 

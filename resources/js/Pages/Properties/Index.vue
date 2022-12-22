@@ -1,8 +1,3 @@
-<script setup>
-import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
-import { Head, Link } from "@inertiajs/inertia-vue3";
-</script>
-
 <template>
   <Head title="Properties" />
 
@@ -70,8 +65,9 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
                         tracking-wider
                       "
                     >
-                      Title
+                      Image
                     </th>
+
                     <th
                       scope="col"
                       class="
@@ -83,69 +79,26 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
                         uppercase
                         tracking-wider
                       "
-                    >
-                      Status
-                    </th>
-                    <th
-                      scope="col"
-                      class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
-                      "
-                    >
-                      Role
-                    </th>
-                    <th
-                      scope="col"
-                      class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
-                      "
-                    >
-                    </th>
+                    ></th>
                   </tr>
                 </thead>
-                <tbody>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Yooooo</div>
-                    <div class="text-sm text-gray-500">KK</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Yooooo</div>
-                    <div class="text-sm text-gray-500">KK</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span
-                      class="
-                        px-2
-                        inline-flex
-                        text-xs
-                        leading-S
-                        font-semibold
-                        rounded-full
-                        bg-green-100
-                        text-sm
-                      "
-                    >
-                      Active
-                    </span>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">Admin</td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                      >Edit</a
-                    >
-                  </td>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr v-for="property in properties" :key="property.id">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <!-- <div class="flex-shrink-0 h-10 w-10">
+                        <img src="https://placehold.it/50x50" alt="" class="h-10 w-10 rounded-full">
+                      </div> -->
+                     {{ property.name }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <img :src="property.image" class="w-12 h-12 rounded">
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <Link :href="`/properties/${property.id}/edit`" class="text-indigo-600 hover:text-indigo-900"
+                        >Edit</Link
+                      >
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -155,3 +108,12 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
     </div>
   </BreezeAuthenticatedLayout>
 </template>
+
+<script setup>
+import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
+import { Head, Link } from "@inertiajs/inertia-vue3";
+
+const props = defineProps({
+  properties: Array  
+})
+</script>
