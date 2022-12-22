@@ -1,10 +1,7 @@
-<script setup>
-import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
-import { Head, Link } from "@inertiajs/inertia-vue3";
-</script>
+
 
 <template>
-  <Head title="Properties" />
+  <Head title="Locations" />
 
   <BreezeAuthenticatedLayout>
     <template #header>
@@ -53,14 +50,15 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
                 Post-ironic portland shabby chic echo park, banjo fashion axe
               </p>
               <form
-                enctype="multipart/form-data"
-                class="bg-white shadow-md m-2 p-2 rounded"
+              @submit.prevent="storeLocation"
+              class="bg-white shadow-md m-2 p-2 rounded"
               >
                 <div class="relative mb-4">
                   <label for="name" class="leading-7 text-sm text-gray-600"
                     >Name</label
                   >
                   <input
+                  v-model="form.name"
                     type="text"
                     id="name"
                     name="name"
@@ -118,3 +116,16 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
     </div>
   </BreezeAuthenticatedLayout>
 </template>
+<script setup>
+import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+
+const form = useForm({
+      name: null,
+    })
+
+    function storeLocation() {
+      form.post('/locations')
+    }
+
+</script>

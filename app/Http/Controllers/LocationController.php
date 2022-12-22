@@ -19,4 +19,13 @@ class LocationController extends Controller
         return Inertia::render('Locations/Create');
     }
 
+    public function store(Request $request)
+    {
+        Location::create([
+            'name'=> $request->input('name')
+        ]);
+        return Inertia::render('Locations/Index',[
+            'locations'=> Location::all()
+        ]);    }
+
 }
