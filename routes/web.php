@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PropertyController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,13 @@ Route::get('/', function () {
 });
 
 Route::get('/properties/', [PropertyController::class, 'index'])->name('properties.index');
+Route::get('/properties/create', [PropertyController::class, 'create'])->name('properties.create');
+
+Route::get('/locations/', [LocationController::class, 'index'])->name('locations.index');
+Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');
+
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

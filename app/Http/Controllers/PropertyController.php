@@ -14,4 +14,10 @@ class PropertyController extends Controller
             'properties'=> Property::all()
         ]);
     }
+    public function create()
+    {
+        return Inertia::render('Properties/Create');
+    }
+
+
 }

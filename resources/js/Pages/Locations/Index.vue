@@ -4,12 +4,12 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
 </script>
 
 <template>
-  <Head title="Properties" />
+  <Head title="Locations" />
 
   <BreezeAuthenticatedLayout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Properties Index
+        Locations Index
       </h2>
     </template>
 
@@ -17,7 +17,7 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="flex justify-end m-2 p-2">
           <Link
-            href="/properties/create"
+            href="/locations/create"
             class="
               px-4
               py-2
@@ -26,7 +26,7 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
               text-white
               rounded
             "
-            >Create Property</Link
+            >New Location</Link
           >
         </div>
         <div class="flex flex-col">
