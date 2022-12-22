@@ -76,4 +76,12 @@ class PropertyController extends Controller
         return Redirect::route('properties.index'); 
 
     }
+
+    public function delete(Property $property)
+    {
+        Storage::delete('public/'. $property->image);
+        $property->delete();
+        return Redirect::route('properties.index'); 
+
+    }
 }

@@ -57,6 +57,7 @@
                     <th
                       scope="col"
                       class="
+                      flex space-x-4
                         px-6
                         py-3
                         text-left text-xs
@@ -78,6 +79,13 @@
                         :href="`/locations/${location.id}/edit`"
                         class="text-indigo-600 hover:text-indigo-900"
                         >Edit</Link
+                      >
+                      /
+                      <Link
+                        :href="`/locations/${location.id}`"
+                        method="delete" as="button" type="button"
+                        class="text-red-600 hover:text-red-900"
+                        >Delete</Link
                       >
                     </td>
                   </tr>

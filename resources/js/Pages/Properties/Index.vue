@@ -71,6 +71,8 @@
                     <th
                       scope="col"
                       class="
+                        flex
+                        space-x-4
                         px-6
                         py-3
                         text-left text-xs
@@ -88,14 +90,25 @@
                       <!-- <div class="flex-shrink-0 h-10 w-10">
                         <img src="https://placehold.it/50x50" alt="" class="h-10 w-10 rounded-full">
                       </div> -->
-                     {{ property.name }}
+                      {{ property.name }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <img :src="property.image" class="w-12 h-12 rounded">
+                      <img :src="property.image" class="w-12 h-12 rounded" />
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <Link :href="`/properties/${property.id}/edit`" class="text-indigo-600 hover:text-indigo-900"
+                      <Link
+                        :href="`/properties/${property.id}/edit`"
+                        class="text-indigo-600 hover:text-indigo-900"
                         >Edit</Link
+                      >
+                      /
+                      <Link
+                        :href="`/properties/${property.id}`"
+                        method="delete"
+                        as="button"
+                        type="button"
+                        class="text-red-600 hover:text-red-900"
+                        >Delete</Link
                       >
                     </td>
                   </tr>
@@ -114,6 +127,6 @@ import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
-  properties: Array  
-})
+  properties: Array,
+});
 </script>
