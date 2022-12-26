@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -13,30 +14,31 @@ class PropertyController extends Controller
 {
     public function index()
     {
+        // return response()->json($properties);
         return Inertia::render('Properties/Index',[
-            'properties'=> Property::all()->map(function($property){
-                return [
-                    'id' => $property->id,
-                    'name' => $property->name,
-                    'image' => asset('/storage/'. $property->image)
-                ];
-            })
+            'properties' => Property::with('location')->get()
+            // 'properties'=> Property::all()->map(function($property){
+            // 'properties'=> Property::all()       
         ]);
     }
     
     
     public function create()
     {
-        return Inertia::render('Properties/Create');
+        return Inertia::render('Properties/Create',[
+            'locations'=> Location::all()
+        ]);
     }
 
     public function store(Request $request) 
     {
+        if(FacadesRequest::file('image')){
         $image = FacadesRequest::file('image')->store('properties', 'public');
+        }
         Property::create([
             'name' => $request->input('name'),
-            'location' =>$request->input('location'),
-            'image' => $image
+            'location_id' =>$request->input('location'),
+            // 'image' => $image
         ]);
 
 
@@ -52,7 +54,9 @@ class PropertyController extends Controller
             'Properties/Edit',
             [
                 'property' => $property,
-                'image' => asset('/storage/'. $property->image)
+                // 'image' => asset('/storage/'. $property->image)
+                'locations'=> Location::all()
+
             ]
         );
     }
@@ -69,7 +73,7 @@ class PropertyController extends Controller
 
         $property->update([
             'name'=> FacadesRequest::input('name'),
-            'location'=> FacadesRequest::input('location'),
+            'location_id'=> FacadesRequest::input('location'),
             'image'=> $image
         ]);
         

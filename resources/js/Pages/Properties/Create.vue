@@ -52,7 +52,7 @@
                       >
                       <div class="mt-1 flex rounded-md shadow-sm">
                         <input
-                        v-model="form.name"
+                          v-model="form.name"
                           type="text"
                           name="name"
                           id="name"
@@ -77,7 +77,20 @@
                         >Location</label
                       >
                       <div class="mt-1 flex rounded-md shadow-sm">
-                        <input
+                        <select class="block
+                            w-full
+                            flex-1
+                            rounded-none rounded-r-md
+                            border-gray-300
+                            focus:border-indigo-500 focus:ring-indigo-500
+                            sm:text-sm"
+                             v-model="form.location">
+                          <option v-for="location in locations" :value="location.id" :key="location.id" >
+                            {{ location.name }}
+                          </option>
+
+                        </select>
+                        <!-- <input
                         v-model="form.location"
                           type="text"
                           name="location"
@@ -92,10 +105,10 @@
                             sm:text-sm
                           "
                           placeholder="Name of Property"
-                        />
+                        /> -->
                       </div>
                     </div>
-<!-- 
+                    <!-- 
                     <div>
                       <label
                         for="image"
@@ -121,8 +134,6 @@
                         />
                       </div>
                     </div> -->
-
-                   
 
                     <div>
                       <label class="block text-sm font-medium text-gray-700"
@@ -230,14 +241,17 @@
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
-const form = useForm({
-      name: null,
-      location:null,
-      image: null,
-    })
-    
-   const storeProperty = ()=> {
-      form.post('/properties')
-    }
+const props = defineProps({
+  locations: Array,
+});
 
+const form = useForm({
+  name: null,
+  location: null,
+  image: null,
+});
+
+const storeProperty = () => {
+  form.post("/properties");
+};
 </script>

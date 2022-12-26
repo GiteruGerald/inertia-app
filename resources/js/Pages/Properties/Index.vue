@@ -65,7 +65,7 @@
                         tracking-wider
                       "
                     >
-                      Image
+                      Location
                     </th>
 
                     <th
@@ -93,7 +93,8 @@
                       {{ property.name }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <img :src="property.image" class="w-12 h-12 rounded" />
+                      {{ property.location.name }}
+                      <!-- <img :src="property.image" class="w-12 h-12 rounded" /> -->
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <Link

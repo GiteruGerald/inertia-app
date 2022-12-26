@@ -18,10 +18,10 @@ public function up()
 
             $table->string('name');
            
-            $table->string('location');
-            // $table->foreign('location_id')->references('id')->on('locations')->nullable();
+            $table->unsignedBigInteger('location_id');
+            $table->foreign('location_id')->references('id')->on('locations')->nullable();
             
-            $table->longText('image')->nullable();
+            // $table->longText('image')->nullable();
             // $table->string('image')->default('https://placehold.it/150x250');
 
             $table->timestamps();

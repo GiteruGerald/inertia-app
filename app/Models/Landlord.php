@@ -5,14 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Property extends Model
+class Landlord extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['name', 'location_id'];
 
     public function location()
     {
         return $this->belongsTo(Location::class);
+    }
+
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
     }
 }
