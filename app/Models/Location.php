@@ -11,6 +11,19 @@ class Location extends Model
 
     protected $fillable = ['name'];
 
-    
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
+    }
+
+    public function propertyManagers()
+    {
+        return $this->hasMany(PropertyManager::class);
+    }
+
+    public function landlords()
+    {
+        return $this->hasMany(Landlord::class);
+    }
 
 }
