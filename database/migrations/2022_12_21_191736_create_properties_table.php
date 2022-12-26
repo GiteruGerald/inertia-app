@@ -21,6 +21,7 @@ public function up()
             $table->unsignedBigInteger('location_id');
             $table->foreign('location_id')->references('id')->on('locations')->nullable();
             
+            $table->unsignedBigInteger('units');
             // $table->longText('image')->nullable();
             // $table->string('image')->default('https://placehold.it/150x250');
 
