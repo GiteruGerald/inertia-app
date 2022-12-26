@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PropertyController;
+use App\Models\PropertyManager;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -40,6 +41,8 @@ Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->n
 Route::put('/locations/{location}', [LocationController::class, 'update'])->name('locations.update');
 Route::delete('/locations/{location}', [LocationController::class, 'delete'])->name('locations.delete');
 Route::post('/locations/', [LocationController::class, 'store'])->name('locations.store');
+
+Route::resource('managers', PropertyManager::class);
 
 
 

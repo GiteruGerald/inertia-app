@@ -37,9 +37,15 @@ const showingNavigationDropdown = ref(false);
                                     Locations
                                 </BreezeNavLink>
                                 <!-- Resume here -->
-                                <BreezeDropdownLink>
+                                <BreezeNavLink>
+                                    PropertyManagers
+                                </BreezeNavLink>
+                                <BreezeNavLink>
                                     Landlords
-                                </BreezeDropdownLink>
+                                </BreezeNavLink>
+                                <BreezeNavLink>
+                                    Tenants
+                                </BreezeNavLink>
                             </div>
                         </div>
 

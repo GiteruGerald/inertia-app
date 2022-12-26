@@ -20,8 +20,12 @@ public function up()
            
             $table->unsignedBigInteger('location_id');
             $table->foreign('location_id')->references('id')->on('locations')->nullable();
+           
+            $table->unsignedBigInteger('manager_id');
+            $table->foreign('manager_id')->references('id')->on('property_managers')->nullable();
             
-            $table->unsignedBigInteger('units');
+            $table->unsignedBigInteger('units')
+                ->nullable();
             // $table->longText('image')->nullable();
             // $table->string('image')->default('https://placehold.it/150x250');
 
