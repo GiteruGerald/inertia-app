@@ -67,6 +67,20 @@
                     >
                       Location
                     </th>
+                    <th
+                      scope="col"
+                      class="
+                        px-6
+                        py-3
+                        text-left text-xs
+                        font-medium
+                        text-gray-500
+                        uppercase
+                        tracking-wider
+                      "
+                    >
+                      Manager
+                    </th>
 
                     <th
                       scope="col"
@@ -94,6 +108,10 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       {{ property.location.name }}
+                      <!-- <img :src="property.image" class="w-12 h-12 rounded" /> -->
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      {{ property.manager.name }}
                       <!-- <img :src="property.image" class="w-12 h-12 rounded" /> -->
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">

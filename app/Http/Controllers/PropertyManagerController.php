@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
+use App\Models\PropertyManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class PropertyManagerController extends Controller
 {
@@ -13,7 +17,16 @@ class PropertyManagerController extends Controller
      */
     public function index()
     {
-        //
+        // return PropertyManager::all();
+         
+        return Inertia::render('PropertyManagers/Index', [
+            'managers' => PropertyManager::all()->map(function ($manager) {
+                return [
+                    'id' => $manager->id,
+                    'name' => $manager->name,
+                ];
+            })
+        ]);
     }
 
     /**
@@ -23,7 +36,11 @@ class PropertyManagerController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('PropertyManagers/Create',
+        [
+            'locations'=>Location::all()
+        ]
+    );
     }
 
     /**
@@ -34,29 +51,28 @@ class PropertyManagerController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        PropertyManager::create([
+            'name' => $request->input('name'),
+            'location_id' =>$request->input('location'),
+            
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return Redirect::route('managers.index');
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(PropertyManager $manager)
     {
-        //
+        return Inertia::render('PropertyManagers/Edit',
+        [
+            'manager'=>$manager,
+            'locations'=> Location::all()
+
+        ]);
     }
 
     /**
@@ -66,9 +82,15 @@ class PropertyManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, PropertyManager $manager)
     {
-        //
+        $manager->update([
+            'name'=>$request->input('name'),
+            'location_id' =>$request->input('location'),
+
+        ]);
+
+        return Redirect::route('managers.index');
     }
 
     /**
@@ -77,8 +99,11 @@ class PropertyManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PropertyManager $manager)
     {
-        //
+        $manager->delete();
+
+        return Redirect::route('managers.index');
+
     }
 }

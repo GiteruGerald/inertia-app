@@ -21,7 +21,10 @@ public function up()
             $table->unsignedBigInteger('location_id');
             $table->foreign('location_id')->references('id')->on('locations')->nullable();
            
-            $table->unsignedBigInteger('manager_id');
+            $table->unsignedBigInteger('landlord_id');
+            $table->foreign('landlord_id')->references('id')->on('locations')->nullable();
+           
+            $table->unsignedBigInteger('manager_id')->nullable();
             $table->foreign('manager_id')->references('id')->on('property_managers')->nullable();
             
             $table->unsignedBigInteger('units')

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\PropertyManagerController;
 use App\Models\PropertyManager;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +19,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
+Route::get('/admin-dash', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -42,7 +43,8 @@ Route::put('/locations/{location}', [LocationController::class, 'update'])->name
 Route::delete('/locations/{location}', [LocationController::class, 'delete'])->name('locations.delete');
 Route::post('/locations/', [LocationController::class, 'store'])->name('locations.store');
 
-Route::resource('managers', PropertyManager::class);
+Route::resource('managers', PropertyManagerController::class);
+Route::resource('landlords', PropertyManagerController::class);
 
 
 

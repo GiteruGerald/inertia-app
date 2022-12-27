@@ -90,22 +90,30 @@
                           </option>
 
                         </select>
-                        <!-- <input
-                        v-model="form.location"
-                          type="text"
-                          name="location"
-                          id="location"
-                          class="
-                            block
+
+                      </div>
+                    </div>
+                    <div>
+                      <label
+                        for="manager"
+                        class="block text-sm font-medium text-gray-700"
+                        >Manager</label
+                      >
+                      <div class="mt-1 flex rounded-md shadow-sm">
+                        <select class="block
                             w-full
                             flex-1
                             rounded-none rounded-r-md
                             border-gray-300
                             focus:border-indigo-500 focus:ring-indigo-500
-                            sm:text-sm
-                          "
-                          placeholder="Name of Property"
-                        /> -->
+                            sm:text-sm"
+                             v-model="form.manager">
+                          <option v-for="manager in managers" :value="manager.id" :key="manager.id" >
+                            {{ manager.name }}
+                          </option>
+
+                        </select>
+
                       </div>
                     </div>
                     <!-- 
@@ -243,12 +251,13 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
   locations: Array,
+  managers: Array,
 });
 
 const form = useForm({
   name: null,
   location: null,
-  image: null,
+  manager: null,
 });
 
 const storeProperty = () => {

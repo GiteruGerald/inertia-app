@@ -37,10 +37,10 @@ const showingNavigationDropdown = ref(false);
                                     Locations
                                 </BreezeNavLink>
                                 <!-- Resume here -->
-                                <BreezeNavLink>
+                                <BreezeNavLink :href="route('managers.index')" :active="route().current('managers.index')">
                                     PropertyManagers
                                 </BreezeNavLink>
-                                <BreezeNavLink>
+                                <BreezeNavLink :href="route('landlords.index')" :active="route().current('landlords.index')">
                                     Landlords
                                 </BreezeNavLink>
                                 <BreezeNavLink>

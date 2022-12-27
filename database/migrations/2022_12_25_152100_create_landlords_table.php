@@ -15,6 +15,11 @@ class CreateLandlordsTable extends Migration
     {
         Schema::create('landlords', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('location_id');
+
+            $table->foreign('location_id')->references('id')->on('locations')->nullable();
+
             $table->timestamps();
         });
     }

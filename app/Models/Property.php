@@ -9,10 +9,15 @@ class Property extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'location_id'];
+    protected $fillable = ['name', 'location_id','manager_id'];
 
     public function location()
     {
         return $this->belongsTo(Location::class);
+    }
+
+    public function manager()
+    {
+        return $this->hasOne(PropertyManager::class,'id','manager_id');
     }
 }
