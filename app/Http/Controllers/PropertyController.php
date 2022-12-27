@@ -57,11 +57,16 @@ class PropertyController extends Controller
 
     public function edit(Property $property)
     {
+        // $item = $property->location();
+        // return response()->json($property->location());
 
         return Inertia::render(
             'Properties/Edit',
             [
+
                 'property' => $property,
+                // 'location' => $property->location(),
+                // 'manager' => $property->manager(),
                 // 'image' => asset('/storage/'. $property->image)
                 'locations'=> Location::all(),
                 'managers'=> PropertyManager::all(),

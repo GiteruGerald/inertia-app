@@ -4,6 +4,7 @@ use App\Http\Controllers\LandlordController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyManagerController;
+use App\Http\Controllers\UnitController;
 use App\Models\PropertyManager;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,8 @@ Route::post('/locations/', [LocationController::class, 'store'])->name('location
 
 Route::resource('managers', PropertyManagerController::class);
 Route::resource('landlords', LandlordController::class);
+Route::resource('units', UnitController::class);
+Route::resource('tenants', TenantController::class);
 
 
 

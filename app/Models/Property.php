@@ -25,4 +25,9 @@ class Property extends Model
     {
         return $this->hasOne(PropertyManager::class,'id','manager_id');
     }
+
+    public function units()
+    {
+        return $this->hasMany(Unit::class);
+    }
 }

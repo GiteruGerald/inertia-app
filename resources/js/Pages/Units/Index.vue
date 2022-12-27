@@ -1,10 +1,10 @@
 <template>
-    <Head title="Tenants" />
+    <Head title="Units" />
   
     <BreezeAuthenticatedLayout>
       <template #header>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          Tenants Index
+          Units Index
         </h2>
       </template>
   
@@ -12,7 +12,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="flex justify-end m-2 p-2">
             <Link
-              href="/tenants/create"
+              href="/units/create"
               class="
                 px-4
                 py-2
@@ -21,7 +21,7 @@
                 text-white
                 rounded
               "
-              >New Tenant</Link
+              >New Unit</Link
             >
           </div>
           <div class="flex flex-col">
@@ -51,7 +51,49 @@
                           tracking-wider
                         "
                       >
-                        Name
+                        Unit No
+                      </th>
+                      <th
+                        scope="col"
+                        class="
+                          px-6
+                          py-3
+                          text-left text-xs
+                          font-medium
+                          text-gray-500
+                          uppercase
+                          tracking-wider
+                        "
+                      >
+                        Block
+                      </th>
+                      <th
+                        scope="col"
+                        class="
+                          px-6
+                          py-3
+                          text-left text-xs
+                          font-medium
+                          text-gray-500
+                          uppercase
+                          tracking-wider
+                        "
+                      >
+                        Type
+                      </th>
+                      <th
+                        scope="col"
+                        class="
+                          px-6
+                          py-3
+                          text-left text-xs
+                          font-medium
+                          text-gray-500
+                          uppercase
+                          tracking-wider
+                        "
+                      >
+                        Property
                       </th>
   
                       <th
@@ -70,19 +112,28 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="tenant in tenants" :key="tenant.id">
+                    <tr v-for="unit in units" :key="unit.id">
                       <td class="px-6 py-4 whitespace-nowrap">
-                        {{ tenant.name }}
+                        {{ unit.unit_no }}
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        {{ unit.block }}
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        {{ unit.type }}
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        {{ unit.property.name }}
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap">
                         <Link
-                          :href="`/tenants/${tenant.id}/edit`"
+                          :href="`/units/${unit.id}/edit`"
                           class="text-indigo-600 hover:text-indigo-900"
                           >Edit</Link
                         >
                         /
                         <Link
-                          :href="`/tenants/${tenant.id}`"
+                          :href="`/units/${unit.id}`"
                           method="delete" as="button" type="button"
                           class="text-red-600 hover:text-red-900"
                           >Delete</Link
@@ -103,6 +154,6 @@
   import { Head, Link } from "@inertiajs/inertia-vue3";
   
   const props = defineProps({
-    tenants:Array
+    units:Array
   })
   </script>

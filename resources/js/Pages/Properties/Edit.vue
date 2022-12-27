@@ -41,12 +41,12 @@
                 shadow-md
               "
             >
-            <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">
-                  Edit Property
-                </h2>
-                <p class="leading-relaxed mb-5 text-gray-600">
-                  Post-ironic portland shabby chic echo park, banjo fashion axe
-                </p>
+              <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">
+                Edit Property
+              </h2>
+              <p class="leading-relaxed mb-5 text-gray-600">
+                Post-ironic portland shabby chic echo park, banjo fashion axe
+              </p>
               <form @submit.prevent="updateProperty">
                 <div class="shadow sm:overflow-hidden sm:rounded-md">
                   <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
@@ -67,7 +67,7 @@
                             w-full
                             flex-1
                             rounded-none rounded-r-md
-border-gray-300
+                            border-gray-300
                             focus:border-indigo-500 focus:ring-indigo-500
                             sm:text-sm
                           "
@@ -83,23 +83,30 @@ border-gray-300
                         >Location</label
                       >
                       <div class="mt-1 flex rounded-md shadow-sm">
-                        <select class="block
+                        <select
+                          class="
+                            block
                             w-full
                             flex-1
                             rounded-none rounded-r-md
                             border-gray-300
                             focus:border-indigo-500 focus:ring-indigo-500
-                            sm:text-sm"
-                             v-model="form.location">
-                          <option v-for="location in locations" :value="location.id" :key="location.id" >
+                            sm:text-sm
+                          "
+                          v-model="form.location"
+                        >
+                          <option
+                            v-for="location in locations"
+                            :value="location.id"
+                            :key="location.id"
+                          >
                             {{ location.name }}
                           </option>
-
                         </select>
                       </div>
                     </div>
-                     <!-- Landlord -->
-                     <div>
+                    <!-- Landlord -->
+                    <div>
                       <label
                         for="landlord"
                         class="block text-sm font-medium text-gray-700"
@@ -137,28 +144,36 @@ border-gray-300
                         >Manager</label
                       >
                       <div class="mt-1 flex rounded-md shadow-sm">
-                        <select class="block
+                        <select
+                          class="
+                            block
                             w-full
                             flex-1
                             rounded-none rounded-r-md
                             border-gray-300
                             focus:border-indigo-500 focus:ring-indigo-500
-                            sm:text-sm"
-                             v-model="form.manager">s
-                          <option v-for="manager in managers" :value="manager.id" :key="manager.id" >
+                            sm:text-sm
+                          "
+                          v-model="form.manager"
+                        >
+                          <option
+                            v-for="manager in managers"
+                            :value="manager.id"
+                            :key="manager.id"
+                          >
                             {{ manager.name }}
                           </option>
-
                         </select>
-
                       </div>
                     </div>
                     <div>
-              <label class="block text-sm font-medium text-gray-700">Photo</label>
-              <!-- <div class="mt-1 flex items-center">
+                      <label class="block text-sm font-medium text-gray-700"
+                        >Photo</label
+                      >
+                      <!-- <div class="mt-1 flex items-center">
                 <img src="image" class="w-32 h-32" alt="">
               </div> -->
-            </div>
+                    </div>
 
                     <div>
                       <label class="block text-sm font-medium text-gray-700"
@@ -265,16 +280,21 @@ border-gray-300
   <script setup>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
-import { Inertia} from "@inertiajs/inertia";
+import { Inertia } from "@inertiajs/inertia";
+import { onMounted } from "@vue/runtime-core";
 
-const props =  defineProps({
-    property: Object,
-    image: String,
-    locations:Array,
-    managers:Array,
-    landlords:Array,
+const props = defineProps({
+  property: Object,
+  image: String,
+  locations: Array,
+  managers: Array,
+  landlords: Array,
 
-})
+  // To check these two
+  location: Array,
+  manager: Array,
+});
+
 
 const form = useForm({
   name: props.property.name,
@@ -284,13 +304,14 @@ const form = useForm({
 });
 
 const updateProperty = () => {
-    Inertia.post(`/properties/${props.property.id}`, {
-  _method: 'put',
-  name: form.name,
-  location: form.location,
-  manager: form.manager,
-  image: form.image,
-})
+  Inertia.post(`/properties/${props.property.id}`, {
+    _method: "put",
+    name: form.name,
+    location: form.location,
+    manager: form.manager,
+    landlord: form.landlord,
+    // image: form.image,
+  });
 };
 </script>
   

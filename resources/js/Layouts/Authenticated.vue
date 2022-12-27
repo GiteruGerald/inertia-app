@@ -30,20 +30,23 @@ const showingNavigationDropdown = ref(false);
                                 <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </BreezeNavLink>
-                                <BreezeNavLink :href="route('properties.index')" :active="route().current('properties.index')">
-                                    Properties
-                                </BreezeNavLink>
                                 <BreezeNavLink :href="route('locations.index')" :active="route().current('locations.index')">
                                     Locations
-                                </BreezeNavLink>
-                                <!-- Resume here -->
-                                <BreezeNavLink :href="route('managers.index')" :active="route().current('managers.index')">
-                                    PropertyManagers
                                 </BreezeNavLink>
                                 <BreezeNavLink :href="route('landlords.index')" :active="route().current('landlords.index')">
                                     Landlords
                                 </BreezeNavLink>
-                                <BreezeNavLink>
+                                <BreezeNavLink :href="route('managers.index')" :active="route().current('managers.index')">
+                                    PropertyManagers
+                                </BreezeNavLink>
+                                <BreezeNavLink :href="route('properties.index')" :active="route().current('properties.index')">
+                                    Properties
+                                </BreezeNavLink>
+                                <!-- Resume here -->
+                                <BreezeNavLink :href="route('units.index')" :active="route().current('units.index')">
+                                    Units
+                                </BreezeNavLink>
+                                <BreezeNavLink :href="route('units.index')" :active="route().current('units.index')">
                                     Tenants
                                 </BreezeNavLink>
                             </div>
