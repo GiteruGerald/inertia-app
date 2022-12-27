@@ -98,6 +98,38 @@ border-gray-300
                         </select>
                       </div>
                     </div>
+                     <!-- Landlord -->
+                     <div>
+                      <label
+                        for="landlord"
+                        class="block text-sm font-medium text-gray-700"
+                        >Landlord</label
+                      >
+                      <div class="mt-1 flex rounded-md shadow-sm">
+                        <select
+                          class="
+                            block
+                            w-full
+                            flex-1
+                            rounded-none rounded-r-md
+                            border-gray-300
+                            focus:border-indigo-500 focus:ring-indigo-500
+                            sm:text-sm
+                          "
+                          v-model="form.landlord"
+                        >
+                          <option
+                            v-for="landlord in landlords"
+                            :value="landlord.id"
+                            :key="landlord.id"
+                          >
+                            {{ landlord.name }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Manager -->
                     <div>
                       <label
                         for="manager"
@@ -112,7 +144,7 @@ border-gray-300
                             border-gray-300
                             focus:border-indigo-500 focus:ring-indigo-500
                             sm:text-sm"
-                             v-model="form.manager">
+                             v-model="form.manager">s
                           <option v-for="manager in managers" :value="manager.id" :key="manager.id" >
                             {{ manager.name }}
                           </option>
@@ -240,13 +272,15 @@ const props =  defineProps({
     image: String,
     locations:Array,
     managers:Array,
+    landlords:Array,
 
 })
 
 const form = useForm({
   name: props.property.name,
-  location: props.property.location,
+  location: null,
   manager: null,
+  landlord: null,
 });
 
 const updateProperty = () => {

@@ -69,7 +69,7 @@
                         />
                       </div>
                     </div>
-
+                    <!-- Location  -->
                     <div>
                       <label
                         for="location"
@@ -77,22 +77,60 @@
                         >Location</label
                       >
                       <div class="mt-1 flex rounded-md shadow-sm">
-                        <select class="block
+                        <select
+                          class="
+                            block
                             w-full
                             flex-1
                             rounded-none rounded-r-md
                             border-gray-300
                             focus:border-indigo-500 focus:ring-indigo-500
-                            sm:text-sm"
-                             v-model="form.location">
-                          <option v-for="location in locations" :value="location.id" :key="location.id" >
+                            sm:text-sm
+                          "
+                          v-model="form.location"
+                        >
+                          <option
+                            v-for="location in locations"
+                            :value="location.id"
+                            :key="location.id"
+                          >
                             {{ location.name }}
                           </option>
-
                         </select>
-
                       </div>
                     </div>
+                    <!-- Landlord -->
+                    <div>
+                      <label
+                        for="landlord"
+                        class="block text-sm font-medium text-gray-700"
+                        >Landlord</label
+                      >
+                      <div class="mt-1 flex rounded-md shadow-sm">
+                        <select
+                          class="
+                            block
+                            w-full
+                            flex-1
+                            rounded-none rounded-r-md
+                            border-gray-300
+                            focus:border-indigo-500 focus:ring-indigo-500
+                            sm:text-sm
+                          "
+                          v-model="form.landlord"
+                        >
+                          <option
+                            v-for="landlord in landlords"
+                            :value="landlord.id"
+                            :key="landlord.id"
+                          >
+                            {{ landlord.name }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Manager -->
                     <div>
                       <label
                         for="manager"
@@ -100,20 +138,26 @@
                         >Manager</label
                       >
                       <div class="mt-1 flex rounded-md shadow-sm">
-                        <select class="block
+                        <select
+                          class="
+                            block
                             w-full
                             flex-1
                             rounded-none rounded-r-md
                             border-gray-300
                             focus:border-indigo-500 focus:ring-indigo-500
-                            sm:text-sm"
-                             v-model="form.manager">
-                          <option v-for="manager in managers" :value="manager.id" :key="manager.id" >
+                            sm:text-sm
+                          "
+                          v-model="form.manager"
+                        >
+                          <option
+                            v-for="manager in managers"
+                            :value="manager.id"
+                            :key="manager.id"
+                          >
                             {{ manager.name }}
                           </option>
-
                         </select>
-
                       </div>
                     </div>
                     <!-- 
@@ -252,12 +296,14 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 const props = defineProps({
   locations: Array,
   managers: Array,
+  landlords: Array,
 });
 
 const form = useForm({
   name: null,
   location: null,
   manager: null,
+  landlord: null,
 });
 
 const storeProperty = () => {

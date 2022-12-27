@@ -79,6 +79,20 @@
                         tracking-wider
                       "
                     >
+                      Landlord
+                    </th>
+                    <th
+                      scope="col"
+                      class="
+                        px-6
+                        py-3
+                        text-left text-xs
+                        font-medium
+                        text-gray-500
+                        uppercase
+                        tracking-wider
+                      "
+                    >
                       Manager
                     </th>
 
@@ -101,18 +115,17 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr v-for="property in properties" :key="property.id">
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <!-- <div class="flex-shrink-0 h-10 w-10">
-                        <img src="https://placehold.it/50x50" alt="" class="h-10 w-10 rounded-full">
-                      </div> -->
+
                       {{ property.name }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       {{ property.location.name }}
-                      <!-- <img :src="property.image" class="w-12 h-12 rounded" /> -->
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      {{ property.landlord.name }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       {{ property.manager.name }}
-                      <!-- <img :src="property.image" class="w-12 h-12 rounded" /> -->
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <Link

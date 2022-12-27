@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandlordController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyManagerController;
@@ -44,7 +45,7 @@ Route::delete('/locations/{location}', [LocationController::class, 'delete'])->n
 Route::post('/locations/', [LocationController::class, 'store'])->name('locations.store');
 
 Route::resource('managers', PropertyManagerController::class);
-Route::resource('landlords', PropertyManagerController::class);
+Route::resource('landlords', LandlordController::class);
 
 
 

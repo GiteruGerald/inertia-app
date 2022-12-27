@@ -1,12 +1,10 @@
-
-
 <template>
-  <Head title="Managers" />
+  <Head title="Landlords" />
 
   <BreezeAuthenticatedLayout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Managers Edit
+        Landlords Edit
       </h2>
     </template>
 
@@ -14,7 +12,7 @@
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="flex m-2 p-2">
           <Link
-            href="/managers"
+            href="/landlords"
             class="
               px-4
               py-2
@@ -44,13 +42,13 @@
               "
             >
               <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">
-                Edit Manager
+                Edit Landlord
               </h2>
               <p class="leading-relaxed mb-5 text-gray-600">
                 Post-ironic portland shabby chic echo park, banjo fashion axe
               </p>
               <form
-                @submit.prevent="updateManager"
+                @submit.prevent="updateLandlord"
                 class="bg-white shadow-md m-2 p-2 rounded"
               >
                 <div class="relative mb-4">
@@ -129,18 +127,18 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
-    manager:Object,
+    landlord:Object,
     locations:Array
 
 });
 
 const form = useForm({
-  name: props.manager.name,
+  name: props.landlord.name,
   location: null,
 });
 
-function updateManager() {
-    Inertia.post(`/managers/${props.manager.id}`, {
+function updateLandlord() {
+    Inertia.post(`/landlords/${props.landlord.id}`, {
   _method: 'put',
   name: form.name,
   location: form.location,

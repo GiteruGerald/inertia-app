@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Landlord;
 use App\Models\Location;
 use App\Models\Property;
 use App\Models\PropertyManager;
@@ -19,7 +20,7 @@ class PropertyController extends Controller
 
         // return response()->json($properties);
         return Inertia::render('Properties/Index',[
-            'properties' => Property::with('location','manager')->get()
+            'properties' => Property::with('location','manager','landlord')->get()
             // 'properties'=> Property::all()->map(function($property){
             // 'properties'=> Property::all()       
         ]);
@@ -30,7 +31,8 @@ class PropertyController extends Controller
     {
         return Inertia::render('Properties/Create',[
             'locations'=> Location::all(),
-            'managers'=>PropertyManager::all()
+            'managers'=>PropertyManager::all(),
+            'landlords'=>Landlord::all()
         ]);
     }
 
@@ -43,6 +45,7 @@ class PropertyController extends Controller
             'name' => $request->input('name'),
             'location_id' =>$request->input('location'),
             'manager_id' =>$request->input('manager'),
+            'landlord_id' =>$request->input('landlord'),
             // 'image' => $image
         ]);
 
@@ -61,7 +64,9 @@ class PropertyController extends Controller
                 'property' => $property,
                 // 'image' => asset('/storage/'. $property->image)
                 'locations'=> Location::all(),
-                'managers'=> PropertyManager::all()
+                'managers'=> PropertyManager::all(),
+                'landlords'=>Landlord::all()
+
 
             ]
         );
@@ -81,6 +86,7 @@ class PropertyController extends Controller
             'name'=> FacadesRequest::input('name'),
             'location_id'=> FacadesRequest::input('location'),
             'manager_id' => FacadesRequest::input('manager'),
+            'landlord_id' => FacadesRequest::input('landlord'),
 
             // 'image'=> $image
         ]);

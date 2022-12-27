@@ -9,6 +9,8 @@ class Landlord extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function location()
     {
         return $this->belongsTo(Location::class);
