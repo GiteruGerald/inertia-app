@@ -4,6 +4,7 @@ use App\Http\Controllers\LandlordController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyManagerController;
+use App\Http\Controllers\TenantController;
 use App\Http\Controllers\UnitController;
 use App\Models\PropertyManager;
 use Illuminate\Foundation\Application;

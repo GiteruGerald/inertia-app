@@ -53,6 +53,34 @@
                       >
                         Name
                       </th>
+                      <th
+                        scope="col"
+                        class="
+                          px-6
+                          py-3
+                          text-left text-xs
+                          font-medium
+                          text-gray-500
+                          uppercase
+                          tracking-wider
+                        "
+                      >
+                        Email
+                      </th>
+                      <th
+                        scope="col"
+                        class="
+                          px-6
+                          py-3
+                          text-left text-xs
+                          font-medium
+                          text-gray-500
+                          uppercase
+                          tracking-wider
+                        "
+                      >
+                        Unit
+                      </th>
   
                       <th
                         scope="col"
@@ -73,6 +101,12 @@
                     <tr v-for="tenant in tenants" :key="tenant.id">
                       <td class="px-6 py-4 whitespace-nowrap">
                         {{ tenant.name }}
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        {{ tenant.email }}
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        {{ tenant.unit.unit_no }}
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap">
                         <Link

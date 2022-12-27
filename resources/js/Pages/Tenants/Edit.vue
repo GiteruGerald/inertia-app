@@ -1,5 +1,4 @@
 <template>
-<template>
 
 <Head title="Tenants" />
 
@@ -85,6 +84,7 @@
                     v-model="form.email"
                       type="email"
                       id="email"
+                      name="email"
                       class="
                         w-full
                         bg-white
@@ -111,6 +111,7 @@
                     v-model="form.phone"
                       type="text"
                       id="phone"
+                      name="phone"
                       class="
                         w-full
                         bg-white
@@ -144,7 +145,7 @@
                             sm:text-sm"
                              v-model="form.unit_id">
                           <option v-for="unit in units" :value="unit.id" :key="unit.id" >
-                            {{ unit.unit_no }}
+                            {{ unit.unit_no}}
                           </option>
 
                         </select>
@@ -172,7 +173,6 @@
   </div>
 </BreezeAuthenticatedLayout>
 </template>
-</template>
   <script setup>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
@@ -186,12 +186,12 @@ const props = defineProps({
 
 const form = useForm({
   name: props.tenant.name,
-  email: null,
-  phone: null,
+  email: props.tenant.email,
+  phone: props.tenant.phone,
   unit_id: null,
 });
 
-function updateTenant() {
+function storeTenant() {
     Inertia.post(`/tenants/${props.tenant.id}`, {
   _method: 'put',
   name: form.name,

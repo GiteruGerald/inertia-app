@@ -19,7 +19,7 @@ class TenantController extends Controller
     {
         return Inertia::render('Tenants/Index',
         [
-            'tenants'=> Tenant::all()
+            'tenants'=> Tenant::with('unit')->get()
         ]);
     }
 
@@ -75,7 +75,8 @@ class TenantController extends Controller
     {
         return Inertia::render('Tenants/Edit',
         [
-            'unit'=> $tenant
+            'tenant'=> $tenant,
+            'units' => Unit::all()
         ]);
     }
 

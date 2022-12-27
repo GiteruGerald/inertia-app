@@ -109,7 +109,7 @@
                     >
                     <input
                     v-model="form.phone"
-                      type="text"
+                      type="phone"
                       id="phone"
                       class="
                         w-full
@@ -142,7 +142,7 @@
                             border-gray-300
                             focus:border-indigo-500 focus:ring-indigo-500
                             sm:text-sm"
-                             v-model="form.unit">
+                             v-model="form.unit_id">
                           <option v-for="unit in units" :value="unit.id" :key="unit.id" >
                             {{ unit.unit_no }}
                           </option>
