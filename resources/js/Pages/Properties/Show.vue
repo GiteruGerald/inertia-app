@@ -203,7 +203,7 @@
                     <div
                       class="p-6 border-t border-gray-200 hover:bg-gray-100 rounded"
                       @dragstart="startDrag($event, unit)"
-                      v-for="unit in units"
+                      v-for="unit in getUnits(2)"
                       :key="unit.id"
                     >
                       <h1
@@ -264,14 +264,14 @@
                       mx-auto
                       lg:grid-cols-3
                     "
-                    @drop="onDrop($event,1)"
+                    @drop="onDrop($event,2)"
                     @dragenter.prevent
                     @dragover.prevent
                   >
                     <div
                       class="p-6 border-t border-gray-200 hover:bg-gray-100 rounded"
                       @dragstart="startDrag($event, unit)"
-                      v-for="unit in units"
+                      v-for="unit in getUnits(2)"
                       :key="unit.id"
                     >
                       <h1
@@ -349,6 +349,9 @@ const props = defineProps({
   landlord: Object,
 });
 
+const getUnits = (list) =>{
+  return props.units.filter((unit)=> unit.list == list)
+}
 const startDrag = (event, unit)=>{
   event.dataTransfer.dropEffect = 'move'
   event.dataTransfer.effectAllowed = 'move'
