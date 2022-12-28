@@ -1,4 +1,4 @@
-# Property Manager Exercise
+# Rental Management Exercise
 
 ### Installation
 
