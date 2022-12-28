@@ -31,12 +31,12 @@ Route::get('/admin-dash', function () {
     ]);
 });
 
-Route::get('/properties/', [PropertyController::class, 'index'])->name('properties.index');
-Route::get('/properties/create', [PropertyController::class, 'create'])->name('properties.create');
-Route::get('/properties/{property}/edit', [PropertyController::class, 'edit'])->name('properties.edit');
-Route::put('/properties/{property}', [PropertyController::class, 'update'])->name('properties.update');
-Route::delete('/properties/{property}', [PropertyController::class, 'delete'])->name('properties.delete');
-Route::post('/properties/', [PropertyController::class, 'store'])->name('properties.store');
+// Route::get('/properties/', [PropertyController::class, 'index'])->name('properties.index');
+// Route::get('/properties/create', [PropertyController::class, 'create'])->name('properties.create');
+// Route::get('/properties/{property}/edit', [PropertyController::class, 'edit'])->name('properties.edit');
+// Route::put('/properties/{property}', [PropertyController::class, 'update'])->name('properties.update');
+// Route::delete('/properties/{property}', [PropertyController::class, 'delete'])->name('properties.delete');
+// Route::post('/properties/', [PropertyController::class, 'store'])->name('properties.store');
 
 
 Route::get('/locations/', [LocationController::class, 'index'])->name('locations.index');
@@ -46,6 +46,7 @@ Route::put('/locations/{location}', [LocationController::class, 'update'])->name
 Route::delete('/locations/{location}', [LocationController::class, 'delete'])->name('locations.delete');
 Route::post('/locations/', [LocationController::class, 'store'])->name('locations.store');
 
+Route::resource('properties', PropertyController::class);
 Route::resource('managers', PropertyManagerController::class);
 Route::resource('landlords', LandlordController::class);
 Route::resource('units', UnitController::class);

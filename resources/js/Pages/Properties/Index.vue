@@ -129,6 +129,12 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <Link
+                        :href="`/properties/${property.id}`"
+                        class="text-green-600 hover:text-indigo-900"
+                        >Show</Link
+                      >
+                      /
+                      <Link
                         :href="`/properties/${property.id}/edit`"
                         class="text-indigo-600 hover:text-indigo-900"
                         >Edit</Link

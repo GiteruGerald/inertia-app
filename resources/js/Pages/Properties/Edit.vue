@@ -44,9 +44,6 @@
               <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">
                 Edit Property
               </h2>
-              <p class="leading-relaxed mb-5 text-gray-600">
-                Post-ironic portland shabby chic echo park, banjo fashion axe
-              </p>
               <form @submit.prevent="updateProperty">
                 <div class="shadow sm:overflow-hidden sm:rounded-md">
                   <div class="space-y-6 bg-white px-4 py-5 sm:p-6">

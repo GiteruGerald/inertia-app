@@ -37,6 +37,13 @@ class PropertyController extends Controller
         ]);
     }
 
+    public function show(Property $property)
+    {
+        return Inertia::render('Properties/Show',
+        [
+            'property'=>$property
+        ]);
+    }
     public function store(PropertyRequest $request) 
     {
         // if(FacadesRequest::file('image')){
