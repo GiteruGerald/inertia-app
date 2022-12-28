@@ -76,6 +76,12 @@
                         ease-in-out
                       "
                     />
+                     <!-- Display error msg -->
+                   <div
+                    v-if="errors.email"
+                    v-text="errors.email"
+                    class="text-red-800 text-sm mt-2"
+                  ></div>
                   </div>
                   <div class="relative mb-4">
                     <label for="email" class="leading-7 text-sm text-gray-600"
@@ -102,6 +108,12 @@
                         ease-in-out
                       "
                     />
+                     <!-- Display error msg -->
+                   <div
+                    v-if="errors.email"
+                    v-text="errors.email"
+                    class="text-red-800 text-sm mt-2"
+                  ></div>
                   </div>
                   <div class="relative mb-4">
                     <label for="name" class="leading-7 text-sm text-gray-600"
@@ -128,6 +140,12 @@
                         ease-in-out
                       "
                     />
+                     <!-- Display error msg -->
+                   <div
+                    v-if="errors.phone"
+                    v-text="errors.phone"
+                    class="text-red-800 text-sm mt-2"
+                  ></div>
                   </div>
                   <div class="relative mb-4">
                     <label
@@ -148,6 +166,12 @@
                           </option>
 
                         </select>
+                         <!-- Display error msg -->
+                   <div
+                    v-if="errors.unit_id"
+                    v-text="errors.unit_id"
+                    class="text-red-800 text-sm mt-2"
+                  ></div>
                   </div>
                   <button
                     class="
@@ -178,6 +202,7 @@
   
   const props = defineProps({
     units:Array,
+    errors:Object
   })
 
   const form = useForm({

@@ -53,6 +53,20 @@
                       >
                         Name
                       </th>
+                      <th
+                        scope="col"
+                        class="
+                          px-6
+                          py-3
+                          text-left text-xs
+                          font-medium
+                          text-gray-500
+                          uppercase
+                          tracking-wider
+                        "
+                      >
+                        Location
+                      </th>
   
                       <th
                         scope="col"
@@ -73,6 +87,9 @@
                     <tr v-for="landlord in landlords" :key="landlord.id">
                       <td class="px-6 py-4 whitespace-nowrap">
                         {{ landlord.name }}
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        {{ landlord.location.name }}
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap">
                         <Link

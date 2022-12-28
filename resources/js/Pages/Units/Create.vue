@@ -74,6 +74,12 @@
                       ease-in-out
                     "
                   />
+                   <!-- Display error msg -->
+                   <div
+                    v-if="errors.unit_no"
+                    v-text="errors.unit_no"
+                    class="text-red-800 text-sm mt-2"
+                  ></div>
                 </div>
                 <div class="relative mb-4">
                   <label
@@ -101,6 +107,12 @@
                       {{ property.name }}
                     </option>
                   </select>
+                   <!-- Display error msg -->
+                   <div
+                    v-if="errors.property_id"
+                    v-text="errors.property_id"
+                    class="text-red-800 text-sm mt-2"
+                  ></div>
                 </div>
                 <div class="relative mb-4">
                   <label for="unit_no" class="leading-7 text-sm text-gray-600"
@@ -128,6 +140,12 @@
                       ease-in-out
                     "
                   />
+                   <!-- Display error msg -->
+                   <div
+                    v-if="errors.block"
+                    v-text="errors.block"
+                    class="text-red-800 text-sm mt-2"
+                  ></div>
                 </div>
                 <div class="relative mb-4">
                   <label
@@ -154,6 +172,12 @@
                     <option value="3 bedroom">3 bedroom</option>
                     <option value="4 bedroom">4 bedroom</option>
                   </select>
+                   <!-- Display error msg -->
+                   <div
+                    v-if="errors.type"
+                    v-text="errors.type"
+                    class="text-red-800 text-sm mt-2"
+                  ></div>
                 </div>
                 <button
                   class="
@@ -184,6 +208,7 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
   properties: Array,
+  errors:Object,
 });
 
 const form = useForm({

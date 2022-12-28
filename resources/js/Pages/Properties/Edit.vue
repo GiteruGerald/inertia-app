@@ -73,9 +73,15 @@
                           "
                           placeholder="Name of Property"
                         />
+                        <!-- Display error msg -->
+                        <div
+                          v-if="errors.name"
+                          v-text="errors.name"
+                          class="text-red-800 text-sm mt-2"
+                        ></div>
                       </div>
                     </div>
-
+                    <!-- Location  -->
                     <div>
                       <label
                         for="location"
@@ -93,7 +99,7 @@
                             focus:border-indigo-500 focus:ring-indigo-500
                             sm:text-sm
                           "
-                          v-model="form.location"
+                          v-model="form.location_id"
                         >
                           <option
                             v-for="location in locations"
@@ -103,6 +109,12 @@
                             {{ location.name }}
                           </option>
                         </select>
+                        <!-- Display error msg -->
+                        <div
+                          v-if="errors.location_id"
+                          v-text="errors.location_id"
+                          class="text-red-800 text-sm mt-2"
+                        ></div>
                       </div>
                     </div>
                     <!-- Landlord -->
@@ -123,7 +135,7 @@
                             focus:border-indigo-500 focus:ring-indigo-500
                             sm:text-sm
                           "
-                          v-model="form.landlord"
+                          v-model="form.landlord_id"
                         >
                           <option
                             v-for="landlord in landlords"
@@ -133,6 +145,11 @@
                             {{ landlord.name }}
                           </option>
                         </select>
+                        <div
+                          v-if="errors.landlord_id"
+                          v-text="errors.landlord_id"
+                          class="text-red-800 text-sm mt-2"
+                        ></div>
                       </div>
                     </div>
 
@@ -154,7 +171,7 @@
                             focus:border-indigo-500 focus:ring-indigo-500
                             sm:text-sm
                           "
-                          v-model="form.manager"
+                          v-model="form.manager_id"
                         >
                           <option
                             v-for="manager in managers"
@@ -164,6 +181,11 @@
                             {{ manager.name }}
                           </option>
                         </select>
+                        <div
+                          v-if="errors.manager_id"
+                          v-text="errors.manager_id"
+                          class="text-red-800 text-sm mt-2"
+                        ></div>
                       </div>
                     </div>
                     <div>
@@ -289,27 +311,27 @@ const props = defineProps({
   locations: Array,
   managers: Array,
   landlords: Array,
+  errors: Object,
 
   // To check these two
   location: Array,
   manager: Array,
 });
 
-
 const form = useForm({
   name: props.property.name,
-  location: null,
-  manager: null,
-  landlord: null,
+  location_id: null,
+  manager_id: null,
+  landlord_id: null,
 });
 
 const updateProperty = () => {
   Inertia.post(`/properties/${props.property.id}`, {
     _method: "put",
     name: form.name,
-    location: form.location,
-    manager: form.manager,
-    landlord: form.landlord,
+    location_id: form.location_id,
+    manager_id: form.manager_id,
+    landlord_id: form.landlord_id,
     // image: form.image,
   });
 };

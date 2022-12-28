@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LocationRequest;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -26,11 +27,10 @@ class LocationController extends Controller
         return Inertia::render('Locations/Create');
     }
 
-    public function store(Request $request)
+    public function store(LocationRequest $request)
     {
-        Location::create([
-            'name' => $request->input('name')
-        ]);
+
+        Location::create($request->validated());
         return Redirect::route('locations.index');
     }
 
@@ -47,11 +47,9 @@ class LocationController extends Controller
     }
 
 
-    public function update( Location $location)
+    public function update(LocationRequest $request, Location $location)
     {
-        $location->update([
-            'name' => FacadesRequest::input('name'),
-        ]);
+        $location->update($request->validated());
         return Redirect::route('locations.index');
     }
 

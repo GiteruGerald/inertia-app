@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UnitRequest;
 use App\Models\Property;
 use App\Models\Unit;
 use Illuminate\Http\Request;
@@ -22,19 +23,13 @@ class UnitController extends Controller
     public function create()
     {
         return Inertia::render('Units/Create',[
-            'properties'=> Property::all()
+            'properties'=> Property::all(),
         ]);
     }
 
-    public function store(Request $request)
+    public function store(UnitRequest $request)
     {
-        Unit::create([
-            'unit_no' => $request->input('unit_no'),
-            'type' => $request->input('type'),
-            'block' => $request->input('block'),
-            'property_id' => $request->input('property_id')
-            
-        ]);
+        Unit::create($request->validated());
 
         return Redirect::route('units.index');
     }
@@ -54,14 +49,9 @@ class UnitController extends Controller
     }
 
 
-    public function update(Request $request, Unit $unit)
+    public function update(UnitRequest $request, Unit $unit)
     {
-        $unit->update([
-            'unit_no' => $request->input('unit_no'),
-            'type' => $request->input('type'),
-            'block' => $request->input('block'),
-            'property_id' => $request->input('property_id')
-        ]);
+        $unit->update($request->validated());
 
         return Redirect::route('units.index');
     }

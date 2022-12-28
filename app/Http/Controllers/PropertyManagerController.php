@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PropertyManagerRequest;
 use App\Models\Location;
 use App\Models\PropertyManager;
 use Illuminate\Http\Request;
@@ -16,16 +17,9 @@ class PropertyManagerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        // return PropertyManager::all();
-         
+    {         
         return Inertia::render('PropertyManagers/Index', [
-            'managers' => PropertyManager::all()->map(function ($manager) {
-                return [
-                    'id' => $manager->id,
-                    'name' => $manager->name,
-                ];
-            })
+            'managers' => PropertyManager::with('location')->get()
         ]);
     }
 
@@ -49,13 +43,9 @@ class PropertyManagerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PropertyManagerRequest $request)
     {
-        PropertyManager::create([
-            'name' => $request->input('name'),
-            'location_id' =>$request->input('location'),
-            
-        ]);
+        PropertyManager::create($request->validated());
 
         return Redirect::route('managers.index');
     }
@@ -63,7 +53,7 @@ class PropertyManagerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+    * @return \Illuminate\Http\Response
      */
     public function edit(PropertyManager $manager)
     {
@@ -82,13 +72,9 @@ class PropertyManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PropertyManager $manager)
+    public function update(PropertyManagerRequest $request, PropertyManager $manager)
     {
-        $manager->update([
-            'name'=>$request->input('name'),
-            'location_id' =>$request->input('location'),
-
-        ]);
+        $manager->update($request->validated());
 
         return Redirect::route('managers.index');
     }

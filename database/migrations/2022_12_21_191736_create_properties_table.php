@@ -27,8 +27,8 @@ public function up()
             $table->unsignedBigInteger('manager_id')->nullable();
             $table->foreign('manager_id')->references('id')->on('property_managers')->nullable();
             
-            $table->unsignedBigInteger('units')
-                ->nullable();
+            // $table->unsignedBigInteger('units')
+            //     ->nullable();
             // $table->longText('image')->nullable();
             // $table->string('image')->default('https://placehold.it/150x250');
 

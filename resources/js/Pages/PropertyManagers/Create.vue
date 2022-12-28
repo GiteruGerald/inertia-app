@@ -79,6 +79,12 @@
                         ease-in-out
                       "
                     />
+                     <!-- Display error msg -->
+                  <div
+                    v-if="errors.name"
+                    v-text="errors.name"
+                    class="text-red-800 text-sm mt-2"
+                  ></div>
                   </div>
                   <div class="relative mb-4">
                     <label
@@ -93,12 +99,18 @@
                             border-gray-300
                             focus:border-indigo-500 focus:ring-indigo-500
                             sm:text-sm"
-                             v-model="form.location">
+                             v-model="form.location_id">
                           <option v-for="location in locations" :value="location.id" :key="location.id" >
                             {{ location.name }}
                           </option>
 
                         </select>
+                         <!-- Display error msg -->
+                  <div
+                    v-if="errors.location_id"
+                    v-text="errors.location_id"
+                    class="text-red-800 text-sm mt-2"
+                  ></div>
                   </div>
                   <button
                     class="
@@ -129,11 +141,12 @@
   
   const props = defineProps({
     locations:Array,
+    errors:Object
   })
 
   const form = useForm({
         name: null,
-        location:null
+        location_id:null
       })
   
       function storeManager() {

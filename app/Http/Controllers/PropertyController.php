@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PropertyRequest;
 use App\Models\Landlord;
 use App\Models\Location;
 use App\Models\Property;
@@ -36,18 +37,12 @@ class PropertyController extends Controller
         ]);
     }
 
-    public function store(Request $request) 
+    public function store(PropertyRequest $request) 
     {
-        if(FacadesRequest::file('image')){
-        $image = FacadesRequest::file('image')->store('properties', 'public');
-        }
-        Property::create([
-            'name' => $request->input('name'),
-            'location_id' =>$request->input('location'),
-            'manager_id' =>$request->input('manager'),
-            'landlord_id' =>$request->input('landlord'),
-            // 'image' => $image
-        ]);
+        // if(FacadesRequest::file('image')){
+        // $image = FacadesRequest::file('image')->store('properties', 'public');
+        // }
+        Property::create($request->validated());
 
 
         return Redirect::route('properties.index'); 
@@ -78,23 +73,16 @@ class PropertyController extends Controller
     }
 
 
-    public function update(Property $property)
+    public function update(PropertyRequest $request, Property $property)
     {
-        $image = $property->image;
+        // $image = $property->image;
 
-        if(FacadesRequest::file('image')){
-            Storage::delete('public/'. $property->image);
-            $image = FacadesRequest::file('image')->store('properties', 'public');
-        }
+        // if(FacadesRequest::file('image')){
+        //     Storage::delete('public/'. $property->image);
+        //     $image = FacadesRequest::file('image')->store('properties', 'public');
+        // }
 
-        $property->update([
-            'name'=> FacadesRequest::input('name'),
-            'location_id'=> FacadesRequest::input('location'),
-            'manager_id' => FacadesRequest::input('manager'),
-            'landlord_id' => FacadesRequest::input('landlord'),
-
-            // 'image'=> $image
-        ]);
+        $property->update($request->validated());
         
         return Redirect::route('properties.index'); 
 

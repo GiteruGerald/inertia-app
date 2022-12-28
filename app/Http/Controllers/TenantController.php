@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TenantRequest;
 use App\Models\Tenant;
 use App\Models\Unit;
 use Illuminate\Http\Request;
@@ -42,14 +43,9 @@ class TenantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TenantRequest $request)
     {
-        Tenant::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
-            'unit_id' => $request->input('unit_id'),
-        ]);
+        Tenant::create($request->validated());
 
         return Redirect::route('tenants.index');
     }
@@ -87,14 +83,9 @@ class TenantController extends Controller
      * @param  \App\Models\Tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tenant $tenant)
+    public function update(TenantRequest $request, Tenant $tenant)
     {
-        $tenant->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
-            'unit_id' => $request->input('unit_id'),
-        ]);
+        $tenant->update($request->validated());
         return Redirect::route('tenants.index');
 
     }

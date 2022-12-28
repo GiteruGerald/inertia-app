@@ -46,9 +46,6 @@
               <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">
                 Add New Location
               </h2>
-              <p class="leading-relaxed mb-5 text-gray-600">
-                Post-ironic portland shabby chic echo park, banjo fashion axe
-              </p>
               <form
               @submit.prevent="storeLocation"
               class="bg-white shadow-md m-2 p-2 rounded"
@@ -79,6 +76,12 @@
                       ease-in-out
                     "
                   />
+                  <!-- Display error msg -->
+                  <div v-if="errors" class="text-red-800 text-sm mt-2">
+                      <div v-for="error in errors" :key="error.name">
+                        <p v-text="errors.name"></p>
+                      </div>
+                  </div>
                 </div>
                 <button
                   class="
@@ -98,19 +101,6 @@
               </form>
             </div>
           </div>
-          <!-- <div class="grid place-content-center mt-10">
-                <form enctype="multipart/form-data" class="bg-white shadow-md m-2 p-2 rounded">
-                    <div class="sm:col-span-6">
-                        <label for="title" class="block text-sm font-medium text-gray-700"> Name</label>
-                        <div class="mt-1">
-                            <input type="text" name="title" id="title" class="block w-full transition duration-150 ease-in-out">
-                        </div>
-                    </div>
-                    <div class="sm:col-span-6">
-                        <button type="submit" class="px-4 py-2 bg-green-400 hover:bg-green-600 rounded-lg text-white"> Create</button>
-                    </div>
-                </form>
-            </div> -->
         </div>
       </div>
     </div>
@@ -120,6 +110,9 @@
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
+const props = defineProps({
+  errors:Object
+})
 const form = useForm({
       name: null,
     })

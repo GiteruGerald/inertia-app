@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LandlordRequest;
 use App\Models\Landlord;
 use App\Models\Location;
 use Illuminate\Http\Request;
@@ -14,12 +15,13 @@ class LandlordController extends Controller
     public function index()
     {
         return Inertia::render('Landlords/Index', [
-            'landlords' => Landlord::all()->map(function ($landlord) {
-                return [
-                    'id' => $landlord->id,
-                    'name' => $landlord->name,
-                ];
-            })
+            'landlords'=> Landlord::with('location')->get()
+            // 'landlords' => Landlord::all()->map(function ($landlord) {
+            //     return [
+            //         'id' => $landlord->id,
+            //         'name' => $landlord->name,
+            //     ];
+            // })
         ]);
     }
 
@@ -33,13 +35,9 @@ class LandlordController extends Controller
     );
     }
 
-    public function store(Request $request)
+    public function store(LandlordRequest $request)
     {
-        Landlord::create([
-            'name' => $request->input('name'),
-            'location_id' =>$request->input('location'),
-            
-        ]);
+        Landlord::create($request->validated());
 
         return Redirect::route('landlords.index');
     }
@@ -60,13 +58,9 @@ class LandlordController extends Controller
         ]);
     }
 
-    public function update(Request $request, Landlord $landlord)
+    public function update(LandlordRequest $request, Landlord $landlord)
     {
-        $landlord->update([
-            'name'=>$request->input('name'),
-            'location_id' =>$request->input('location'),
-
-        ]);
+        $landlord->update($request->validated());
         return Redirect::route('landlords.index');
 
     }
