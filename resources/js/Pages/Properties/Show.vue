@@ -197,8 +197,11 @@
                       lg:grid-cols-3
                     "
                   >
-                    <div class="p-6" v-for="unit in units" :key="unit.id">
-                      
+                    <div
+                      class="p-6 border-t border-gray-200 hover:bg-gray-100 rounded"
+                      v-for="unit in units"
+                      :key="unit.id"
+                    >
                       <h1
                         class="
                           mx-auto
@@ -211,16 +214,42 @@
                           lg:text-3xl
                         "
                       >
-                        Unit-{{ unit.unit_no }}
+                        Unit-: {{ unit.unit_no }}
                       </h1>
                       <p
-                        class="mx-auto text-base leading-relaxed text-gray-500"
+                        class="
+                          mx-auto
+                          mb-8
+                          font-semibold
+                          leading-none
+                          tracking-tighter
+                          text-neutral-600
+                        "
                       >
-                        Free and Premium themes, UI Kit's, templates and landing
-                        pages built with Tailwind CSS, HTML &amp; Next.js.
+                        Block-: {{ unit.block }}
                       </p>
+                      <p
+                        class="
+                          mx-auto
+                          mb-8
+                          font-semibold
+                          leading-none
+                          tracking-tighter
+                          text-neutral-600
+                        "
+                      >
+                        Type-{{ unit.type }}
+                      </p>
+                      
+                      <div class="ml-4 flex-shrink-0">
+                        <Link
+                          :href="`/units/${unit.id}`"
+                          type="button"
+                          class="text-red-600 hover:text-red-900"
+                          >
+                        > More Details</Link>
+                      </div>
                     </div>
-                  
                   </div>
                 </div>
               </div>
