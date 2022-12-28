@@ -53,7 +53,7 @@ class LocationController extends Controller
         return Redirect::route('locations.index');
     }
 
-    public function delete( Location $location)
+    public function destroy( Location $location)
     {
         $location->delete();
         

@@ -4,6 +4,7 @@ use App\Http\Controllers\LandlordController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyManagerController;
+use App\Http\Controllers\RentalAgreementsController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\UnitController;
 use App\Models\PropertyManager;
@@ -39,18 +40,22 @@ Route::get('/admin-dash', function () {
 // Route::post('/properties/', [PropertyController::class, 'store'])->name('properties.store');
 
 
-Route::get('/locations/', [LocationController::class, 'index'])->name('locations.index');
-Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');
-Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->name('locations.edit');
-Route::put('/locations/{location}', [LocationController::class, 'update'])->name('locations.update');
-Route::delete('/locations/{location}', [LocationController::class, 'delete'])->name('locations.delete');
-Route::post('/locations/', [LocationController::class, 'store'])->name('locations.store');
+// Route::get('/locations/', [LocationController::class, 'index'])->name('locations.index');
+// Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');
+// Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->name('locations.edit');
+// Route::put('/locations/{location}', [LocationController::class, 'update'])->name('locations.update');
+// Route::delete('/locations/{location}', [LocationController::class, 'delete'])->name('locations.delete');
+// Route::post('/locations/', [LocationController::class, 'store'])->name('locations.store');
 
+Route::resource('locations', LocationController::class)->except('show');
 Route::resource('properties', PropertyController::class);
 Route::resource('managers', PropertyManagerController::class);
 Route::resource('landlords', LandlordController::class);
 Route::resource('units', UnitController::class);
 Route::resource('tenants', TenantController::class);
+
+Route::get('/agreements/{tenant}/create', [RentalAgreementsController::class, 'create'])->name('agreements.create');
+Route::post('/agreements/', [RentalAgreementsController::class, 'store'])->name('agreements.store');
 
 
 

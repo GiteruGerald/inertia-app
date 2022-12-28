@@ -38,12 +38,23 @@ class UnitController extends Controller
     public function show(Unit $unit)
     {
         $tenant = Tenant::where('unit_id', $unit->id)->first();
-        // return response()->json($tenant); 
+        $property = $unit->property()->first();
+        $manager = $property->manager()->first();
+        // $tenant = Tenant::with('agreements')->get();
+        if($tenant){
+            $agreement = $tenant->agreements()->first();
+        }else{
+            $agreement = null;
+        }
+
+        // return response()->json($agreement); 
         return Inertia::render('Units/Show',
         [
             'unit'=>$unit,
-            'property'=>$unit->property()->first(),
-            'tenant'=> $tenant
+            'property'=>$property,
+            'tenant'=> $tenant,
+            'manager'=> $manager,
+            'agreement'=> $agreement,
         ]);
     }
 

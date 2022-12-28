@@ -27,8 +27,8 @@ class AgreementRequest extends FormRequest
             'tenant_id' => 'required|exists:tenants,id',
             'rent' => 'required|numeric',
             'service_charge' => 'required|numeric',
-            'repair_charges' => 'required|numeric',
-            'due_date' => 'required|date',
+            'repair_charge' => 'required|numeric',
+            'due_date' => 'required|date|after:tomorrow',
         ];
     }
 }

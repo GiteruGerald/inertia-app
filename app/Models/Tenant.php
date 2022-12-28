@@ -11,7 +11,7 @@ class Tenant extends Model
 
     protected $guarded = [];
 
-    public function rentalAgreements()
+    public function agreements()
     {
         return $this->hasMany(RentalAgreement::class);
     }

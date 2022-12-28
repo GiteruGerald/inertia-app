@@ -21,7 +21,7 @@ class CreateRentalAgreementsTable extends Migration
            
             $table->integer('rent');
             $table->integer('service_charge');
-            $table->integer('repairs_charge');
+            $table->integer('repair_charge');
             $table->date('due_date');
 
             $table->timestamps();

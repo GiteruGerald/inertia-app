@@ -101,7 +101,7 @@ class PropertyController extends Controller
 
     }
 
-    public function delete(Property $property)
+    public function destroy(Property $property)
     {
         Storage::delete('public/'. $property->image);
         $property->delete();

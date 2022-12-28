@@ -111,7 +111,7 @@
                       "
                     >
                       <dt class="text-sm font-medium text-gray-500">
-                        Attachments
+                        House Units
                       </dt>
                       <dd
                         class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"
@@ -163,15 +163,65 @@
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                     d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                                  />
-                                </svg></Link
-                              >
+                                  /></svg
+                              ></Link>
                             </div>
                           </li>
                         </ul>
                       </dd>
                     </div>
                   </dl>
+                </div>
+              </div>
+              <div class="overflow-hidden bg-white shadow sm:rounded-lg mt-5">
+                <div
+                  class="
+                    relative
+                    items-center
+                    w-full
+                    px-5
+                    py-12
+                    mx-auto
+                    md:px-12
+                    lg:px-24
+                    max-w-7xl
+                  "
+                >
+                  <div
+                    class="
+                      grid
+                      w-full
+                      grid-cols-1
+                      gap-12
+                      mx-auto
+                      lg:grid-cols-3
+                    "
+                  >
+                    <div class="p-6" v-for="unit in units" :key="unit.id">
+                      
+                      <h1
+                        class="
+                          mx-auto
+                          mb-8
+                          text-2xl
+                          font-semibold
+                          leading-none
+                          tracking-tighter
+                          text-neutral-600
+                          lg:text-3xl
+                        "
+                      >
+                        Unit-{{ unit.unit_no }}
+                      </h1>
+                      <p
+                        class="mx-auto text-base leading-relaxed text-gray-500"
+                      >
+                        Free and Premium themes, UI Kit's, templates and landing
+                        pages built with Tailwind CSS, HTML &amp; Next.js.
+                      </p>
+                    </div>
+                  
+                  </div>
                 </div>
               </div>
             </div>

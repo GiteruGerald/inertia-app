@@ -1,11 +1,10 @@
 <template>
-
-    <Head title="Tenants" />
+    <Head title="Agreement|Create" />
   
     <BreezeAuthenticatedLayout>
       <template #header>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          Tenants Create
+          Agreement Create
         </h2>
       </template>
   
@@ -13,7 +12,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="flex m-2 p-2">
             <Link
-              href="/tenants"
+              href="/units"
               class="
                 px-4
                 py-2
@@ -43,22 +42,21 @@
                 "
               >
                 <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">
-                  Add New Tenant
+                  Sign New Agreement for {{ tenant.name }}
                 </h2>
-
                 <form
-                @submit.prevent="storeTenant"
-                class="bg-white shadow-md m-2 p-2 rounded"
+                  @submit.prevent="storeAgreement"
+                  class="bg-white shadow-md m-2 p-2 rounded"
                 >
                   <div class="relative mb-4">
-                    <label for="name" class="leading-7 text-sm text-gray-600"
-                      >Name</label
+                    <label for="unit_no" class="leading-7 text-sm text-gray-600"
+                      >Rent</label
                     >
                     <input
-                    v-model="form.name"
-                      type="text"
-                      id="name"
-                      name="name"
+                      v-model="form.rent"
+                      type="number"
+                      id="rent"
+                      name="rent"
                       class="
                         w-full
                         bg-white
@@ -77,20 +75,21 @@
                       "
                     />
                      <!-- Display error msg -->
-                   <div
-                    v-if="errors.email"
-                    v-text="errors.email"
-                    class="text-red-800 text-sm mt-2"
-                  ></div>
+                     <div
+                      v-if="errors.rent"
+                      v-text="errors.rent"
+                      class="text-red-800 text-sm mt-2"
+                    ></div>
                   </div>
                   <div class="relative mb-4">
-                    <label for="email" class="leading-7 text-sm text-gray-600"
-                      >Email</label
+                    <label for="unit_no" class="leading-7 text-sm text-gray-600"
+                      >Due Data</label
                     >
                     <input
-                    v-model="form.email"
-                      type="email"
-                      id="email"
+                      v-model="form.due_date"
+                      type="date"
+                      id="due_date"
+                      name="due_date"
                       class="
                         w-full
                         bg-white
@@ -109,20 +108,22 @@
                       "
                     />
                      <!-- Display error msg -->
-                   <div
-                    v-if="errors.email"
-                    v-text="errors.email"
-                    class="text-red-800 text-sm mt-2"
-                  ></div>
+                     <div
+                      v-if="errors.due_date"
+                      v-text="errors.due_date"
+                      class="text-red-800 text-sm mt-2"
+                    ></div>
                   </div>
+                  
                   <div class="relative mb-4">
-                    <label for="name" class="leading-7 text-sm text-gray-600"
-                      >Phone</label
+                    <label for="unit_no" class="leading-7 text-sm text-gray-600"
+                      >Service Charge</label
                     >
                     <input
-                    v-model="form.phone"
-                      type="phone"
-                      id="phone"
+                      v-model="form.service_charge"
+                      type="number"
+                      id="service_charge"
+                      name="service_charge"
                       class="
                         w-full
                         bg-white
@@ -141,37 +142,44 @@
                       "
                     />
                      <!-- Display error msg -->
-                   <div
-                    v-if="errors.phone"
-                    v-text="errors.phone"
-                    class="text-red-800 text-sm mt-2"
-                  ></div>
+                     <div
+                      v-if="errors.service_charge"
+                      v-text="errors.service_charge"
+                      class="text-red-800 text-sm mt-2"
+                    ></div>
                   </div>
                   <div class="relative mb-4">
-                    <label
-                        for="unit"
-                        class="block text-sm font-medium text-gray-700"
-                        >Unit</label
-                      >
-                    <select class="block
-                            w-full
-                            flex-1
-                            rounded-none rounded-r-md
-                            border-gray-300
-                            focus:border-indigo-500 focus:ring-indigo-500
-                            sm:text-sm"
-                             v-model="form.unit_id">
-                          <option v-for="unit in units" :value="unit.id" :key="unit.id" >
-                            {{ unit.unit_no }}
-                          </option>
-
-                        </select>
-                         <!-- Display error msg -->
-                   <div
-                    v-if="errors.unit_id"
-                    v-text="errors.unit_id"
-                    class="text-red-800 text-sm mt-2"
-                  ></div>
+                    <label for="unit_no" class="leading-7 text-sm text-gray-600"
+                      >Repair Charges</label
+                    >
+                    <input
+                      v-model="form.repair_charge"
+                      type="number"
+                      id="repair_charge"
+                      name="repair_charge"
+                      class="
+                        w-full
+                        bg-white
+                        rounded
+                        border border-gray-300
+                        focus:border-pink-500 focus:ring-2 focus:ring-pink-200
+                        text-base
+                        outline-none
+                        text-gray-700
+                        py-1
+                        px-3
+                        leading-8
+                        transition-colors
+                        duration-200
+                        ease-in-out
+                      "
+                    />
+                     <!-- Display error msg -->
+                     <div
+                      v-if="errors.repair_charge"
+                      v-text="errors.repair_charge"
+                      class="text-red-800 text-sm mt-2"
+                    ></div>
                   </div>
                   <button
                     class="
@@ -197,32 +205,34 @@
       </div>
     </BreezeAuthenticatedLayout>
   </template>
-  <script setup>
+    <script setup>
   import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
   import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
-import { ref } from "@vue/reactivity";
+  import { ref } from "@vue/reactivity";
   
   let processing = ref(false)
   const props = defineProps({
-    units:Array,
-    errors:Object
-  })
-
+    tenant: Array,
+    errors:Object,
+  });
+  
   const form = useForm({
-        name: null,
-        email:null,
-        phone:null,
-        unit_id:null,
-      })
+    tenant_id: props.tenant.id,
+    rent: null,
+    service_charge:null,
+    repair_charge:null,
+    due_date:null
+  });
   
-      function storeTenant() {
-        try {
-          processing.value = true
-          form.post('/tenants')
-        } catch (error) {
+  const storeAgreement =  async()=> 
+  {
+    processing.value = true
+    await form.post("/agreements")
+    .then(()=>{
           processing.value = false
-        }
-         
-      }
-  
+        })
+    .catch(()=>{
+          processing.value = false
+        })
+  }
   </script>
