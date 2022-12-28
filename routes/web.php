@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandlordController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PropertyController;
@@ -54,14 +55,15 @@ Route::resource('landlords', LandlordController::class);
 Route::resource('units', UnitController::class);
 Route::resource('tenants', TenantController::class);
 
+Route::get('/dashboard/', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/agreements/{tenant}/create', [RentalAgreementsController::class, 'create'])->name('agreements.create');
 Route::post('/agreements/', [RentalAgreementsController::class, 'store'])->name('agreements.store');
 
 
 
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
