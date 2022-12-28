@@ -128,6 +128,7 @@
                     rounded
                     text-lg
                   "
+                  :disabled="processing"
                 >
                   Submit
                 </button>
@@ -142,7 +143,9 @@
   <script setup>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+import { ref } from "@vue/reactivity";
 
+let processing = ref(false)
 const props = defineProps({
   locations: Array,
   errors: Object,
@@ -154,6 +157,7 @@ const form = useForm({
 });
 
 function storeLandlord() {
+  processing.value = true
   form.post("/landlords");
 }
 </script>

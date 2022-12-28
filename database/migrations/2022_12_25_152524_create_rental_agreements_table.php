@@ -15,6 +15,15 @@ class CreateRentalAgreementsTable extends Migration
     {
         Schema::create('rental_agreements', function (Blueprint $table) {
             $table->id();
+            
+            $table->unsignedBigInteger('tenant_id');
+            $table->foreign('tenant_id')->references('id')->on('tenants');
+           
+            $table->integer('rent');
+            $table->integer('service_charge');
+            $table->integer('repairs_charge');
+            $table->date('due_date');
+
             $table->timestamps();
         });
     }

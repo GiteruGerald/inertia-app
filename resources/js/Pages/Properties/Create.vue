@@ -296,6 +296,7 @@
                         focus:ring-indigo-500
                         focus:ring-offset-2
                       "
+                      :disabled="processing"
                     >
                       Save
                     </button>
@@ -314,7 +315,10 @@
 <script setup>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+import { ref } from "@vue/reactivity";
 
+
+let processing = ref(false)
 const props = defineProps({
   locations: Array,
   managers: Array,
@@ -330,6 +334,8 @@ const form = useForm({
 });
 
 const storeProperty = () => {
+  processing.value = true;
+
   form.post("/properties");
 };
 </script>

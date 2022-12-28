@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UnitRequest;
 use App\Models\Property;
+use App\Models\Tenant;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -36,7 +37,14 @@ class UnitController extends Controller
 
     public function show(Unit $unit)
     {
-        //
+        $tenant = Tenant::where('unit_id', $unit->id)->first();
+        // return response()->json($tenant); 
+        return Inertia::render('Units/Show',
+        [
+            'unit'=>$unit,
+            'property'=>$unit->property()->first(),
+            'tenant'=> $tenant
+        ]);
     }
 
     public function edit(Unit $unit)

@@ -39,9 +39,15 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {
+        // return response()->json($property->location()->first());
         return Inertia::render('Properties/Show',
         [
-            'property'=>$property
+            'property'=>$property,
+            'location'=>$property->location()->first(),
+            'manager'=>$property->manager()->first(),
+            'landlord'=>$property->landlord()->first(),
+            'units'=>$property->units()->get(),
+            
         ]);
     }
     public function store(PropertyRequest $request) 
