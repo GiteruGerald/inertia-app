@@ -23065,11 +23065,24 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var props = __props;
+    var startDrag = function startDrag(event, unit) {
+      event.dataTransfer.dropEffect = 'move';
+      event.dataTransfer.effectAllowed = 'move';
+      event.dataTransfer.setData('unitID', unit.id);
+    };
+    var onDrop = function onDrop(event, list) {
+      var unitID = event.dataTransfer.getData('unitID');
+      var item = items.value.find(function (item) {
+        return item.id == unitID;
+      });
+    };
     (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_2__.onMounted)(function () {
       console.log(props.units);
     });
     var __returned__ = {
       props: props,
+      startDrag: startDrag,
+      onDrop: onDrop,
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       get Head() {
         return _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head;
@@ -26364,9 +26377,7 @@ var _hoisted_30 = {
 var _hoisted_31 = {
   "class": "relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl"
 };
-var _hoisted_32 = {
-  "class": "grid w-full grid-cols-1 gap-12 mx-auto lg:grid-cols-3"
-};
+var _hoisted_32 = ["onDragstart"];
 var _hoisted_33 = {
   "class": "mx-auto mb-8 text-2xl font-semibold leading-none tracking-tighter text-neutral-600 lg:text-3xl"
 };
@@ -26379,7 +26390,20 @@ var _hoisted_35 = {
 var _hoisted_36 = {
   "class": "ml-4 flex-shrink-0"
 };
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, null, -1 /* HOISTED */);
+var _hoisted_37 = ["onDragstart"];
+var _hoisted_38 = {
+  "class": "mx-auto mb-8 text-2xl font-semibold leading-none tracking-tighter text-neutral-600 lg:text-3xl"
+};
+var _hoisted_39 = {
+  "class": "mx-auto mb-8 font-semibold leading-none tracking-tighter text-neutral-600"
+};
+var _hoisted_40 = {
+  "class": "mx-auto mb-8 font-semibold leading-none tracking-tighter text-neutral-600"
+};
+var _hoisted_41 = {
+  "class": "ml-4 flex-shrink-0"
+};
+var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, null, -1 /* HOISTED */);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
@@ -26414,9 +26438,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }),
           _: 2 /* DYNAMIC */
         }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["href"])])]);
-      }), 128 /* KEYED_FRAGMENT */))])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.units, function (unit) {
+      }), 128 /* KEYED_FRAGMENT */))])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        "class": "grid w-full grid-cols-1 gap-12 mx-auto lg:grid-cols-3",
+        onDrop: _cache[0] || (_cache[0] = function ($event) {
+          return $setup.onDrop($event, 1);
+        }),
+        onDragenter: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"])),
+        onDragover: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"]))
+      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.units, function (unit) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           "class": "p-6 border-t border-gray-200 hover:bg-gray-100 rounded",
+          onDragstart: function onDragstart($event) {
+            return $setup.startDrag($event, unit);
+          },
           key: unit.id
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_33, " Unit-: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(unit.unit_no), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_34, " Block-: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(unit.block), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_35, " Type-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(unit.type), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
           href: "/units/".concat(unit.id),
@@ -26427,8 +26461,32 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" > More Details")];
           }),
           _: 2 /* DYNAMIC */
-        }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["href"])])]);
-      }), 128 /* KEYED_FRAGMENT */))])])])])]), _hoisted_37])])])];
+        }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["href"])])], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_32);
+      }), 128 /* KEYED_FRAGMENT */))], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        "class": "grid w-full grid-cols-1 gap-12 mx-auto lg:grid-cols-3",
+        onDrop: _cache[3] || (_cache[3] = function ($event) {
+          return $setup.onDrop($event, 1);
+        }),
+        onDragenter: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"])),
+        onDragover: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"]))
+      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.units, function (unit) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+          "class": "p-6 border-t border-gray-200 hover:bg-gray-100 rounded",
+          onDragstart: function onDragstart($event) {
+            return $setup.startDrag($event, unit);
+          },
+          key: unit.id
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_38, " Unit-: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(unit.unit_no), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_39, " Block-: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(unit.block), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_40, " Type-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(unit.type), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+          href: "/units/".concat(unit.id),
+          type: "button",
+          "class": "text-red-600 hover:text-red-900"
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" > More Details")];
+          }),
+          _: 2 /* DYNAMIC */
+        }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["href"])])], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_37);
+      }), 128 /* KEYED_FRAGMENT */))], 32 /* HYDRATE_EVENTS */)])])])]), _hoisted_42])])])];
     }),
     _: 1 /* STABLE */
   })], 64 /* STABLE_FRAGMENT */);

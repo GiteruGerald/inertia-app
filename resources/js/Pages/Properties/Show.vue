@@ -196,9 +196,81 @@
                       mx-auto
                       lg:grid-cols-3
                     "
+                    @drop="onDrop($event,1)"
+                    @dragenter.prevent
+                    @dragover.prevent
                   >
                     <div
                       class="p-6 border-t border-gray-200 hover:bg-gray-100 rounded"
+                      @dragstart="startDrag($event, unit)"
+                      v-for="unit in units"
+                      :key="unit.id"
+                    >
+                      <h1
+                        class="
+                          mx-auto
+                          mb-8
+                          text-2xl
+                          font-semibold
+                          leading-none
+                          tracking-tighter
+                          text-neutral-600
+                          lg:text-3xl
+                        "
+                      >
+                        Unit-: {{ unit.unit_no }}
+                      </h1>
+                      <p
+                        class="
+                          mx-auto
+                          mb-8
+                          font-semibold
+                          leading-none
+                          tracking-tighter
+                          text-neutral-600
+                        "
+                      >
+                        Block-: {{ unit.block }}
+                      </p>
+                      <p
+                        class="
+                          mx-auto
+                          mb-8
+                          font-semibold
+                          leading-none
+                          tracking-tighter
+                          text-neutral-600
+                        "
+                      >
+                        Type-{{ unit.type }}
+                      </p>
+                      
+                      <div class="ml-4 flex-shrink-0">
+                        <Link
+                          :href="`/units/${unit.id}`"
+                          type="button"
+                          class="text-red-600 hover:text-red-900"
+                          >
+                        > More Details</Link>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="
+                      grid
+                      w-full
+                      grid-cols-1
+                      gap-12
+                      mx-auto
+                      lg:grid-cols-3
+                    "
+                    @drop="onDrop($event,1)"
+                    @dragenter.prevent
+                    @dragover.prevent
+                  >
+                    <div
+                      class="p-6 border-t border-gray-200 hover:bg-gray-100 rounded"
+                      @dragstart="startDrag($event, unit)"
                       v-for="unit in units"
                       :key="unit.id"
                     >
@@ -277,6 +349,17 @@ const props = defineProps({
   landlord: Object,
 });
 
+const startDrag = (event, unit)=>{
+  event.dataTransfer.dropEffect = 'move'
+  event.dataTransfer.effectAllowed = 'move'
+  event.dataTransfer.setData('unitID', unit.id)
+}
+
+const onDrop = (event,list) =>{
+  
+  const unitID = event.dataTransfer.getData('unitID')
+  const item = items.value.find((item) => item.id == unitID)
+}
 onMounted(() => {
   console.log(props.units);
 });
