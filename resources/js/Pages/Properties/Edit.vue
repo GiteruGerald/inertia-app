@@ -194,7 +194,7 @@
               </div> -->
                     </div>
 
-                    <div>
+                    <!-- <div>
                       <label class="block text-sm font-medium text-gray-700"
                         >Cover photo</label
                       >
@@ -258,7 +258,7 @@
                           </p>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                   <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                     <button

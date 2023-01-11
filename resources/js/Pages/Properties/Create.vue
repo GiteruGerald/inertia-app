@@ -209,7 +209,7 @@
                       </div>
                     </div> -->
 
-                    <div>
+                    <!-- <div>
                       <label class="block text-sm font-medium text-gray-700"
                         >Cover photo</label
                       >
@@ -263,7 +263,7 @@
                                 name="image"
                                 type="file"
                                 class="sr-only"
-                                @input="form.image = $event.target.files[0]"
+                                @change="onImageChoose"
                               />
                             </label>
                             <p class="pl-1">or drag and drop</p>
@@ -273,7 +273,7 @@
                           </p>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                   <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                     <button
@@ -331,10 +331,24 @@ const form = useForm({
   location_id: null,
   manager_id: null,
   landlord_id: null,
+  image:null,
 });
 
+// const onImageChoose = (ev) => {
+//   const file = ev.target.files[0];
+
+//   const reader = new FileReader();
+//   reader.onload = () => {
+//     // The field to send on backend and apply validations
+//     form.image = reader.result;
+
+//     ev.target.value = "";
+//   };
+//   reader.readAsDataURL(file);
+// }
+
 const storeProperty = () => {
-  processing.value = true;
+  // processing.value = true;
 
   form.post("/properties");
 };

@@ -15,4 +15,9 @@ class Unit extends Model
     {
         return $this->belongsTo(Property::class);
     }
+
+    public function tenant()
+    {
+        return $this->hasOne(Tenant::class);
+    }
 }

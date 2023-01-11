@@ -122,7 +122,7 @@ const form = useForm({
     })
 
     function storeLocation() {
-      processing.value = true
+      // processing.value = true
       form.post('/locations')
     }
 

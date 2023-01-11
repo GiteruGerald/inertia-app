@@ -217,7 +217,7 @@ import { ref } from "@vue/reactivity";
   
       function storeTenant() {
         try {
-          processing.value = true
+          // processing.value = true
           form.post('/tenants')
         } catch (error) {
           processing.value = false

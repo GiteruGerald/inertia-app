@@ -44,9 +44,6 @@
               <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">
                 Edit Landlord
               </h2>
-              <p class="leading-relaxed mb-5 text-gray-600">
-                Post-ironic portland shabby chic echo park, banjo fashion axe
-              </p>
               <form
                 @submit.prevent="updateLandlord"
                 class="bg-white shadow-md m-2 p-2 rounded"

@@ -83,7 +83,7 @@
                   </div>
                   <div class="relative mb-4">
                     <label for="unit_no" class="leading-7 text-sm text-gray-600"
-                      >Due Data</label
+                      >Due Date</label
                     >
                     <input
                       v-model="form.due_date"
@@ -226,7 +226,7 @@
   
   const storeAgreement =  async()=> 
   {
-    processing.value = true
+    // processing.value = true
     await form.post("/agreements")
     .then(()=>{
           processing.value = false

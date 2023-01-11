@@ -157,7 +157,7 @@ const form = useForm({
 });
 
 function storeLandlord() {
-  processing.value = true
+  // processing.value = true
   form.post("/landlords");
 }
 </script>

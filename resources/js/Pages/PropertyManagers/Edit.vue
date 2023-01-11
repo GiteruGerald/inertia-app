@@ -44,9 +44,6 @@
               <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">
                 Edit Manager
               </h2>
-              <p class="leading-relaxed mb-5 text-gray-600">
-                Post-ironic portland shabby chic echo park, banjo fashion axe
-              </p>
               <form
                 @submit.prevent="updateManager"
                 class="bg-white shadow-md m-2 p-2 rounded"
@@ -141,13 +138,14 @@ import { Inertia } from "@inertiajs/inertia";
 const props = defineProps({
     manager:Object,
     locations:Array,
-    errors:Object
+    errors:Object,
+    location: Object
 
 });
 
 const form = useForm({
   name: props.manager.name,
-  location_id: null,
+  location_id: props.location.id,
 });
 
 function updateManager() {

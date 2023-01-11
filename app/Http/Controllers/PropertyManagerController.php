@@ -57,10 +57,12 @@ class PropertyManagerController extends Controller
      */
     public function edit(PropertyManager $manager)
     {
+        // return response()->json($manager->location()->get());
         return Inertia::render('PropertyManagers/Edit',
         [
             'manager'=>$manager,
-            'locations'=> Location::all()
+            'locations'=> Location::all(),
+            'location'=>$manager->location()->get(),
 
         ]);
     }

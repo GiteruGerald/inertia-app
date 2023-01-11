@@ -31,9 +31,11 @@ class TenantController extends Controller
      */
     public function create()
     {
+        $units = Unit::doesntHave('tenant')->get();
+
         return Inertia::render('Tenants/Create',
         [
-            'units'=> Unit::all()
+            'units'=> $units
         ]);
     }
 

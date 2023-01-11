@@ -46,9 +46,6 @@
               <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">
                 Edit Location
               </h2>
-              <p class="leading-relaxed mb-5 text-gray-600">
-                Post-ironic portland shabby chic echo park, banjo fashion axe
-              </p>
               <form
                 @submit.prevent="updateLocation"
                 class="bg-white shadow-md m-2 p-2 rounded"

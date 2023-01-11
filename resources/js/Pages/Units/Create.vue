@@ -222,7 +222,7 @@ const form = useForm({
 });
 
 function storeUnit() {
-  processing.value = true
+  // processing.value = true
   form.post("/units");
 }
 </script>
